@@ -27,7 +27,15 @@ app.use(errorMiddleware)
 
 
 let bookings = [];
-
+// Health check route
+app.get('/', (req, res) => {
+    res.json({
+        success: true,
+        message: 'BookGarnus API is running',
+        version: '1.0.0',
+        environment: NODE_ENV
+    });
+});
 
 
 app.listen(PORT, async() => {
