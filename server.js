@@ -35,13 +35,25 @@ app.use(errorMiddleware)
 
 let bookings = [];
 // Health check route
-app.get('/', (req, res) => {
-    res.json({
-        success: true,
-        message: 'BookGarnus API is running',
-        version: '1.0.0',
-        environment: NODE_ENV
-    });
+// Add this after app.use(express.json()) and before app.use("/api/v1/bookings")
+app.get('/api/v1/health', (req, res) => {
+  res.json({
+    status: 'active',
+    message: 'BookGarnus API is running',
+    version: '1.0.0',
+    endpoints: {
+      auth: {
+        register: 'POST /api/v1/auth/register',
+        login: 'POST /api/v1/auth/login'
+      },
+      bookings: {
+        getAll: 'GET /api/v1/bookings (protected)',
+        create: 'POST /api/v1/bookings (protected)',
+        update: 'PUT /api/v1/bookings/:id/edit (protected)',
+        delete: 'DELETE /api/v1/bookings/:id (protected)'
+      }
+    }
+  });
 });
 
 
