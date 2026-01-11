@@ -22,6 +22,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Health check route - BEFORE other routes
+
+app.get('/', (req, res) => {
+  res.json({
+    status: 'active',
+    message: 'BookGarnus API is running',
+    version: '1.0.0',
+});
+});
+
+
 app.get('/api/v1/health', (req, res) => {
   res.json({
     status: 'active',
