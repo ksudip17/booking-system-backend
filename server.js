@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import { NODE_ENV, PORT } from "./config/env.js";
 import connectToDatabase from "./database/monodb.js";
-import cookieParser from "cookie-parser";
+
 import bookingRouter from "./routes/bookings.routes.js";
 import errorMiddleware from "./middleware/error.middleware.js";
 import authRouter from "./routes/auth.routes.js";
@@ -54,7 +54,7 @@ app.get('/api/v1/health', (req, res) => {
 
 // Routes
 app.use("/api/v1/bookings", bookingRouter);
-app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/auth", authRouter);""
 
 // Error Handler - MUST BE LAST
 app.use(errorMiddleware);
